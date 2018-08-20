@@ -1,7 +1,7 @@
 /*
  * =====================================================================================
  *
- *       Filename:  fuse-concat.c
+ *       Filename:  cat-fuse.c
  *
  *        Version:  0.0.1
  *    Description:  concat regular files dynamically into one virtual file
