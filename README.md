@@ -2,7 +2,7 @@
 Concat regular files dynamically into one virtual file.
 
 ## Build
-This project uses CMake as it's build system.
+This project uses CMake as its build system.
 ```bash
 mkdir build
 cd build
