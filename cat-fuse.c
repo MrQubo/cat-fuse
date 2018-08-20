@@ -104,7 +104,7 @@ static int read_concat(size_t const file_no, char * const buffer, size_t const s
     int const fd = open(files[file_no], O_RDONLY);
     if (fd < 0) { RETURN_ERRNO; }
 
-    off_t file_sz = -1;
+    off_t file_sz = 0;
 
     if (offset > 0) {
         file_sz = lseek(fd, 0L, SEEK_END);
@@ -130,7 +130,7 @@ static int read_concat(size_t const file_no, char * const buffer, size_t const s
     int bytes_read_next = 0;
 
     if ((size_t)bytes_read < size) {
-        bytes_read_next = read_concat(file_no + 1, buffer + bytes_read, size - (size_t)bytes_read, file_sz > offset ? offset-file_sz : 0L);
+        bytes_read_next = read_concat(file_no + 1, buffer + bytes_read, size - (size_t)bytes_read, offset > file_sz ? offset-file_sz : 0L);
         if (bytes_read_next < 0) { return bytes_read_next; }
     }
 
