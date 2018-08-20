@@ -89,6 +89,9 @@ static int do_getattr(char const * const path, struct stat * const st) {
 
 
 static int read_concat(size_t const file_no, char * const buffer, size_t const size, off_t const offset) {
+    if (size == 0) {
+        return 0;
+    }
     if (file_no >= files_size) {
         printf("\tReached EOF.\n");
         return 0;
@@ -160,10 +163,6 @@ static int do_read(
     if (strcmp(path, "/") != 0) {
         errno = ENOENT;
         RETURN_ERRNO;
-    }
-
-    if (size == 0) {
-        return 0;
     }
 
 
