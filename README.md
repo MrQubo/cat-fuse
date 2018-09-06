@@ -49,4 +49,5 @@ cat file1+2+3
 ```
 
 ## Todo
-Cache content and size of files and invalidate the cache if mtime has changed.
+- Cache content and size of files and invalidate the cache if mtime has changed.
+- Add open and lock operations.
