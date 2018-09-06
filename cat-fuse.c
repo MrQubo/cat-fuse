@@ -170,8 +170,39 @@ static int do_read(
 }
 
 static struct fuse_operations operations = {
-    .getattr = do_getattr,
-    .read    = do_read,
+    .bmap        = NULL,
+    .create      = NULL,
+    .destroy     = NULL,
+    .fallocate   = NULL,
+    .flock       = NULL, // handled by fuse
+    .flush       = NULL,
+    .fsync       = NULL, // TODO: fsync underlying files
+    .fsyncdir    = NULL,
+    .getattr     = do_getattr,
+    .getxattr    = NULL,
+    .init        = NULL,
+    .link        = NULL,
+    .listxattr   = NULL,
+    .lock        = NULL, // handled by fuse
+    .mkdir       = NULL,
+    .mknod       = NULL,
+    .open        = NULL, // TODO: open underlying files
+    .opendir     = NULL,
+    .read        = do_read,
+    .read_buf    = NULL, // TODO: should use read_buf instead of read, see: https://libfuse.github.io/doxygen/structfuse__operations.html#a1ecbe844d937ffbbe135958bcb28a719
+    .readdir     = NULL,
+    .readlink    = NULL,
+    .release     = NULL, // TODO: release underlying files
+    .releasedir  = NULL,
+    .removexattr = NULL,
+    .rename      = NULL,
+    .rmdir       = NULL,
+    .setxattr    = NULL,
+    .symlink     = NULL,
+    .truncate    = NULL,
+    .unlink      = NULL,
+    .write       = NULL,
+    .write_buf   = NULL,
 };
 
 static void usage(char const * const argv0, char const * const msg) {
@@ -204,6 +235,8 @@ int main(int argc, char * const argv[const]) {
         exit(1);
     }
 
+
+    new_argc += 2;
 
     _files = malloc(files_size * sizeof(char *));
     if (_files == NULL) { RETURN_ERRNO; }
